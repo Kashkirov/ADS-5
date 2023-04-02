@@ -3,6 +3,22 @@
 #include <map>
 #include "tstack.h"
 
+int GetPriority(const char& operation) {
+    switch (static_cast<int>(operation)) {
+    case static_cast<int>(Operation::Add):
+        return 2;
+    case static_cast<int>(Operation::Subtract):
+        return 2;
+    case static_cast<int>(Operation::OpenBracket):
+        return 0;
+    case static_cast<int>(Operation::CloseBracket):
+        return 1;
+    case static_cast<int>(Operation::Multiply):
+        return 3;
+    case static_cast<int>(Operation::Divide):
+        return 3;
+    }
+}
 std::string infx2pstfx(std::string inf) {
   std::string post;
     TStack<char, 50> op;
