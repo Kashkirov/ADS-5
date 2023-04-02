@@ -1,16 +1,15 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_TSTACK_H_
 #define INCLUDE_TSTACK_H_
-
+#include <string>
 template<typename T, int size>
 class TStack {
-  private: 
+    private:
     T arr[size];
     int top;
-public:
+    public:
     TStack() :top(-1) {}
-    void Push(const T& value)
-    {
+    void Push(const T& value) {
         if (top >= size) {
             throw std::string("Stack has already been filled !");
         } else {
