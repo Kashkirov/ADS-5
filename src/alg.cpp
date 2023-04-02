@@ -38,12 +38,19 @@ int GetPriority(const char& operation) {
 std::string infx2pstfx(std::string inf) {
   std::string post;
     TStack<char, 50> op;
-    for (char j: inf) {
-        if (j != '(' && j != ')' && j != '*' && j != '/' && j != '+' && j != '-') {
+    for (char j : inf) {
+        if (j != '(' &&
+            j != ')' &&
+            j != '*' &&
+            j != '/' &&
+            j != '+' &&
+            j != '-') {
             post.push_back(j);
             post.push_back(' ');
         } else {
-            if (GetPriority(j) == 0 || op.IsEmpty() || GetPriority(op.GetValue()) < GetPriority(j)) {
+            if (GetPriority(j) == 0 ||
+                op.IsEmpty() ||
+                GetPriority(op.GetValue()) < GetPriority(j)) {
                 op.Push(j);
             } else if (j == ')') {
                     while ('(' != op.GetValue()) {
@@ -70,12 +77,17 @@ std::string infx2pstfx(std::string inf) {
     return post;
 }
 int eval(std::string pref) {
-  int result=0;
+  int result = 0;
     int Exploited;
     int Domain;
     TStack<int, 50> num;
     for (char j : pref) {
-        if (j == '(' || j == ')' || j == '*' || j == '/' || j == '+' || j == '-') {
+        if (j == '(' ||
+            j == ')' ||
+            j == '*' ||
+            j == '/' ||
+            j == '+' ||
+            j == '-') {
             switch (static_cast<int>(j)) {
             case static_cast<int>(Operation::Add):
                 Exploited = num.Pop();
@@ -85,7 +97,7 @@ int eval(std::string pref) {
             case static_cast<int>(Operation::Subtract):
                 Exploited = num.Pop();
                 Domain = num.Pop();
-                num.Push (Domain - Exploited);
+                num.Push(Domain - Exploited);
                 break;
             case static_cast<int>(Operation::Multiply):
                 Exploited = num.Pop();
