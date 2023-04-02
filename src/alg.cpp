@@ -33,6 +33,7 @@ int GetPriority(const char& operation) {
     case static_cast<int>(Operation::Divide):
         return 3;
     }
+  return 0;
 }
 std::string infx2pstfx(std::string inf) {
   std::string post;
