@@ -4,10 +4,10 @@
 #include <string>
 template<typename T, int size>
 class TStack {
-    private:
-    T arr[size];
+ private:
+    T arr[size] = { 0 };
     int top;
-    public:
+ public:
     TStack() :top(-1) {}
     void Push(const T& value) {
         if (top >= size) {
