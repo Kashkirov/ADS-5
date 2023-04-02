@@ -3,6 +3,21 @@
 #include <map>
 #include "tstack.h"
 
+enum class Operation : char {
+  Add = '+',
+  Subtract = '-',
+  Multiply = '*',
+  Divide = '/',
+  OpenBracket = '(',
+  CloseBracket = ')'
+};
+int ConvertCharNumbers(const char& instance) {
+    if ((static_cast<int>(instance - 48)) > 0) {
+        return static_cast<int>(instance - 48);
+    } else {
+        return static_cast<int>(instance);
+    }
+}
 int GetPriority(const char& operation) {
     switch (static_cast<int>(operation)) {
     case static_cast<int>(Operation::Add):
@@ -53,7 +68,6 @@ std::string infx2pstfx(std::string inf) {
     post.pop_back();
     return post;
 }
-
 int eval(std::string pref) {
   int result=0;
     int Exploited;
@@ -83,7 +97,7 @@ int eval(std::string pref) {
                 num.Push(Domain / Exploited);
                 break;
             }
-        } else if (static_cast<int>(j) != 32 && static_cast<int>(j) != 40 && static_cast<int>(j) != 41) {
+        } else if (static_cast<int>(j) != 32) {
             num.Push(ConvertCharNumbers(j));
         }
     }
